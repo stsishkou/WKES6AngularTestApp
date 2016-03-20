@@ -95,7 +95,6 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 if (process.env.NODE_ENV === 'development') {
-    // --display-error-details
     webpackConfig['watch'] = true;
     webpackConfig['watchOptions'] = {aggregateTimeout: 100};
     webpackConfig['devtool'] = 'source-map';
