@@ -74,22 +74,24 @@ var plugins = [
 
 if (process.env.NODE_ENV === 'test') {
     webpackConfig['plugins'] = [extractTextPlugin, cleanWebpackPlugin];
-    webpackConfig['isparta'] = {
-        embedSource: true,
-        noAutoWrap: true,
-        // these babel options will be passed only to isparta and not to babel-loader
-        babel: {
-            presets: ['es2015', 'stage-0']
-        }
-    };
-    webpackConfig['module']['loaders'].push({
-        test: /\.js$/,
-        exclude: [
-            path.resolve('./src/templates')
-        ],
-        include: path.resolve('./src/'),
-        loader: 'isparta'
-    });
+    if (process.env.TEST_COVERAGE) {
+        webpackConfig['isparta'] = {
+            embedSource: true,
+            noAutoWrap: true,
+            // these babel options will be passed only to isparta and not to babel-loader
+            babel: {
+                presets: ['es2015', 'stage-0']
+            }
+        };
+        webpackConfig['module']['loaders'].push({
+            test: /\.js$/,
+            exclude: [
+                path.resolve('./src/templates')
+            ],
+            include: path.resolve('./src/'),
+            loader: 'isparta'
+        });
+    }
 }
 
 if (process.env.NODE_ENV === 'development') {

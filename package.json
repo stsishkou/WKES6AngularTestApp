@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "SET NODE_ENV=test&& karma start",
-    "test-coverage": "SET NODE_ENV=test&& SET COVERAGE=true&& karma start",
+    "test-coverage": "SET NODE_ENV=test&& SET TEST_COVERAGE=true&& karma start",
     "dev": "SET NODE_ENV=development&& webpack",
     "deploy": "SET NODE_ENV=production&& webpack -p"
   },
@@ -47,10 +47,6 @@
   "dependencies": {
     "angular": "^1.5.1",
     "angular-ui-router": "^0.2.18",
-    "domready": "^1.0.8",
-    "jquery": "^3.0.0-beta1",
-    "nanobar": "^0.2.1",
-    "normalize.css": "^3.0.3",
-    "toastr": "^2.1.2"
+    "domready": "^1.0.8"
   }
 }

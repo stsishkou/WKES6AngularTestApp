@@ -34,11 +34,7 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['mocha', 'coverage'],
-
-        coverageReporter: {
-            // type: 'text'
-        },
+        reporters: ['mocha'],
 
         // web server port
         port: 9876,
@@ -46,13 +42,12 @@ module.exports = function (config) {
         // enable / disable colors in the output (reporters and logs)
         colors: true,
 
-
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_ERROR,
 
         browsers: [
-            'Chrome',
+            'Chrome'
             //'PhantomJS'
         ],
 
@@ -61,5 +56,14 @@ module.exports = function (config) {
         // Concurrency level
         // how many browser should be started simultaneous
         concurrency: Infinity
-    })
+    });
+
+    if (process.env.TEST_COVERAGE) {
+        config['reporters'].push('coverage');
+        config['coverageReporter'] = {
+            type: 'html'
+            // type: 'text'
+        };
+        config['singleRun'] = true;
+    }
 };
